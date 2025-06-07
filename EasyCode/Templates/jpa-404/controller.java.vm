@@ -10,10 +10,9 @@ package ${controllerPackageName};
 $!{autoImport.vm}
 import org.anycms.base.web.CrudController;
 import ${modelPackageName}.${entityName};
-import ${modelPackageName}.${repositoryClassName};
+import ${repositoryPackageName}.${repositoryClassName};
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import ${dtoPackageName}.$dtoClassName;
 
 import ${serviceImplPackageName}.${serviceClassName};
 import java.util.List;

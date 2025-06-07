@@ -12,6 +12,7 @@ $!callback.setFileName($tool.append($entityName, ".java"))
 package ${modelPackageName};
 $!{autoImport.vm}
 #if($useJarkataAnntation)
+import ${constansPackageName}.Constants;
 import org.anycms.base.model.BaseEntity;
 import org.anycms.schema.annotation.EntitySchema;
 import org.anycms.schema.annotation.FieldSchema;
@@ -25,7 +26,6 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 #end
-import java.io.Serializable;
 
 #if(${useLombok})
 import lombok.Data;
@@ -52,7 +52,7 @@ $!{autoImport.vm}
 @Table(name= $!{entityName}.TABLE)
 @EntitySchema(title = "$!{tableInfo.comment}",apiUrl = $!{entityName}.API_URL)
 #set($superClassFields = ["adminId","adminType"])
-public class $!{entityName} {
+public class $!{entityName} extends BaseEntity {
 
     public static final String API_URL = Constants.API_PRE + "$!{tableInfo.obj.name}";
     public static final String TABLE = Constants.TABLE_PRE + "$!{tableInfo.obj.name}";
