@@ -52,7 +52,7 @@
   {
     "matchType": "REGEX",
     "columnType": "bigint(\\(\\d+\\))?",
-    "javaType": "long"
+    "javaType": "java.lang.Long"
   },
   {
     "matchType": "ORDINARY",

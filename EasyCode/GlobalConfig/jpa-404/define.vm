@@ -21,8 +21,8 @@
 /**
  * $!{tableInfo.comment}($!{tableInfo.name})$desc
  *
- * @author $!author
- * @since $!time.currTime()
+ * @Author: $!author
+ * @Date: $!time.currTime()
  */
 #end
 

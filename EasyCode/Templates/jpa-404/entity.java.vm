@@ -59,37 +59,39 @@ public class $!{entityName} extends BaseEntity {
     public static final String TABLE = Constants.TABLE_PRE + "$!{tableInfo.obj.name}";
 
 #foreach($column in $tableInfo.pkColumn)
-    #if(${column.comment})#end
-
-#if($superClassFields.contains($column.name))
+    #if($superClassFields.contains($column.name))
     #else
-    @Id
-    @Column(name = "$!{column.obj.name}")
-#if($useSwagger)
-    @ApiModelProperty(value = "${column.comment}" )
-#end
-#if($useOpenApi)
-    @Schema(description = "${column.comment}" )
-#end
-    @FieldSchema(title = "${column.comment}")
-    private $!{tool.getClsNameByFullName($column.type)} $!{column.name};
+        @Id
+        @Column(name = "$!{column.obj.name}")
+        #if($useSwagger)
+        @ApiModelProperty(value = "${column.comment}")
+        #end
+        #if($useOpenApi)
+        @Schema(description = "${column.comment}")
+        #end
+        @FieldSchema(title = "${column.comment}")
+        private $!{tool.getClsNameByFullName($column.type)} $!{column.name};
     #end
+
     #foreach($column in $tableInfo.otherColumn)
-#if(${column.comment})#end
+        #set($notShow = $!tool.newArrayList("creator_id","deleted","created_time","updated_time"))
+        #if($superClassFields.contains($column.name))
+        #elseif($notShow.contains($column.obj.name))
+        #else
+        @Column(name = "$!{column.obj.name}")
+        #if($useOpenApi)
+        @Schema(description = "${column.comment}")
+        #end
+        @FieldSchema(title = "${column.comment}")
+        private $!{tool.getClsNameByFullName($column.type)} $!{column.name};
 
-#if($superClassFields.contains($column.name))
-
-#else
-    @Column(name = "$!{column.obj.name}")
-    @FieldSchema(title = "${column.comment}")
-    private $!{tool.getClsNameByFullName($column.type)} $!{column.name};
-    #end
+        #end
     #end
 #end
 
 #if(!${useLombok})
-#foreach($column in $tableInfo.fullColumn)
-    #getSetMethod($column)
-#end
+    #foreach($column in $tableInfo.fullColumn)
+        #getSetMethod($column)
+    #end
 #end
 }
