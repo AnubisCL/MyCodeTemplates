@@ -1,0 +1,18 @@
+$!{define.vm}
+$!{jpa.vm}
+
+
+#set($repositorySavePath = $tool.append(${repositorySrcFolder},"/",${repositoryPackageName.replace(".","/")}))
+
+$!callback.setSavePath($repositorySavePath)
+$!callback.setFileName($tool.append($repositoryClassName, ".java"))
+package ${repositoryPackageName};
+
+import ${modelPackageName}.${entityName};
+import org.anycms.base.repository.BaseRepository;
+#tableComment("repository class")
+#set($pkType=$tableInfo.pkColumn.get(0).shortType)
+public interface ${repositoryClassName} extends BaseRepository<${entityName}> {
+
+
+}

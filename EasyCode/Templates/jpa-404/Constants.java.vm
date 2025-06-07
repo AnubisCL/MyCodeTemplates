@@ -1,0 +1,20 @@
+##导入宏定义
+$!{define.vm}
+$!{jpa.vm}
+
+
+#set($entitySavePath = $tool.append(${javamodelSrcFolder},"/",${modelPackageName.replace(".","/")}))
+
+$!callback.setSavePath($entitySavePath)
+$!callback.setFileName($tool.append($entityName, ".java"))
+
+##自动导入包（全局变量）
+package ${modelPackageName};
+$!{autoImport.vm}
+
+
+public class Constants {
+    public static final String MODULE_PRE = "${tableInfo.preName}_";
+    public static final String API_PRE = "api/${tableInfo.preName}/";
+    public static final String TABLE_PRE = "${tableInfo.preName}_";
+}

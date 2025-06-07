@@ -1,0 +1,58 @@
+
+$!{define.vm}
+$!{jpa.vm}
+
+#set($serviceSavePath = $tool.append(${controllerSrcFolder},"/",${controllerPackageName.replace(".","/")}))
+
+$!callback.setSavePath($serviceSavePath)
+$!callback.setFileName($tool.append($controllerClassName, ".java"))
+package ${controllerPackageName};
+$!{autoImport.vm}
+import org.anycms.base.web.CrudController;
+import ${modelPackageName}.${entityName};
+import ${modelPackageName}.${repositoryClassName};
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+import ${dtoPackageName}.$dtoClassName;
+
+import ${serviceImplPackageName}.${serviceClassName};
+import java.util.List;
+import java.util.Optional;
+
+#tableComment("controller class")
+#set($entityNameLower=$tool.firstLowerCase($tableInfo.name))
+#set($dtoVariableName=$tool.firstLowerCase($dtoClassName))
+
+
+
+#if(${useSlf4j})
+@Slf4j
+#end
+#if($useSwagger)
+@ApiModel(value = "$!{entityName}" , description = "$!{tableInfo.comment}" )
+#end
+#if($useOpenApi)
+@Tag(name = "$!{tableInfo.comment} API")
+#end
+@RestController
+@RequestMapping($!{entityName}.API_URL)
+public class ${controllerClassName} extends CrudController<${repositoryClassName}, ${entityName}> {
+
+    @Autowired
+    #set($serviceVariableName=$tool.firstLowerCase($serviceClassName))
+    private ${serviceClassName} ${serviceVariableName};
+
+    @Autowired
+    private ${repositoryClassName} repository;
+
+    public ${controllerClassName}() {
+        super(${entityName}.class);
+    }
+
+    @Override
+    public ${repositoryClassName} getRepository() {
+        return repository;
+    }
+
+
+}

@@ -1,0 +1,94 @@
+##导入宏定义
+$!{define.vm}
+$!{jpa.vm}
+
+
+#set($entitySavePath = $tool.append(${javamodelSrcFolder},"/",${modelPackageName.replace(".","/")}))
+
+$!callback.setSavePath($entitySavePath)
+$!callback.setFileName($tool.append($entityName, ".java"))
+
+##自动导入包（全局变量）
+package ${modelPackageName};
+$!{autoImport.vm}
+#if($useJarkataAnntation)
+import org.anycms.base.model.BaseEntity;
+import org.anycms.schema.annotation.EntitySchema;
+import org.anycms.schema.annotation.FieldSchema;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+#else
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+#end
+import java.io.Serializable;
+
+#if(${useLombok})
+import lombok.Data;
+#end
+#if($useSwagger)
+import io.swagger.annotations.ApiModel;
+#end
+#if($useOpenApi)
+import io.swagger.v3.oas.annotations.media.Schema;
+#end
+$!{autoImport.vm}
+
+#tableComment("entity class")
+#if(${useLombok})
+@Data
+#end
+#if($useSwagger)
+@ApiModel(value = "$!{entityName}" , description = "$!{tableInfo.comment}" )
+#end
+#if($useOpenApi)
+@Schema(name = "$!{entityName}" , description = "$!{tableInfo.comment}" )
+#end
+@Entity
+@Table(name= $!{entityName}.TABLE)
+@EntitySchema(title = "$!{tableInfo.comment}",apiUrl = $!{entityName}.API_URL)
+#set($superClassFields = ["adminId","adminType"])
+public class $!{entityName} {
+
+    public static final String API_URL = Constants.API_PRE + "$!{tableInfo.obj.name}";
+    public static final String TABLE = Constants.TABLE_PRE + "$!{tableInfo.obj.name}";
+
+#foreach($column in $tableInfo.pkColumn)
+    #if(${column.comment})#end
+
+#if($superClassFields.contains($column.name))
+    #else
+    @Id
+    @Column(name = "$!{column.obj.name}")
+#if($useSwagger)
+    @ApiModelProperty(value = "${column.comment}" )
+#end
+#if($useOpenApi)
+    @Schema(description = "${column.comment}" )
+#end
+    @FieldSchema(title = "${column.comment}")
+    private $!{tool.getClsNameByFullName($column.type)} $!{column.name};
+    #end
+    #foreach($column in $tableInfo.otherColumn)
+#if(${column.comment})#end
+
+#if($superClassFields.contains($column.name))
+
+#else
+    @Column(name = "$!{column.obj.name}")
+    @FieldSchema(title = "${column.comment}")
+    private $!{tool.getClsNameByFullName($column.type)} $!{column.name};
+    #end
+    #end
+#end
+
+#if(!${useLombok})
+#foreach($column in $tableInfo.fullColumn)
+    #getSetMethod($column)
+#end
+#end
+}
