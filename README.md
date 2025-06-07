@@ -18,3 +18,5 @@ require Intellij EasyCode-MybatisCodeHelper plugin version 1.2.9 or later.
 
 ### for version 1.3.0 later, you can just copy to project easyCode directory, so you can use git to version it.
 
+## Language
+[velocity](https://velocity.apache.org/)
