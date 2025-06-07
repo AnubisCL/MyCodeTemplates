@@ -2,14 +2,13 @@
 $!{define.vm}
 $!{jpa.vm}
 
+#set($serviceSavePath = $tool.append(${constansSrcFolder},"/",${constansPackageName.replace(".","/")}))
 
-#set($entitySavePath = $tool.append(${javamodelSrcFolder},"/",${modelPackageName.replace(".","/")}))
-
-$!callback.setSavePath($entitySavePath)
-$!callback.setFileName($tool.append($entityName, ".java"))
+$!callback.setSavePath($serviceSavePath)
+$!callback.setFileName($tool.append("Constants", ".java"))
 
 ##自动导入包（全局变量）
-package ${modelPackageName};
+package ${constansPackageName};
 $!{autoImport.vm}
 
 
