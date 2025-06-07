@@ -54,7 +54,8 @@ $!{autoImport.vm}
 #set($superClassFields = ["adminId","adminType"])
 public class $!{entityName} extends BaseEntity {
 
-    public static final String API_URL = Constants.API_PRE + "$!{tableInfo.obj.name}";
+    #set($entityVariableName=$tool.firstLowerCase($entityName))
+    public static final String API_URL = Constants.API_PRE + "$!{entityVariableName}";
     public static final String TABLE = Constants.TABLE_PRE + "$!{tableInfo.obj.name}";
 
 #foreach($column in $tableInfo.pkColumn)

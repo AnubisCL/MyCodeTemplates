@@ -66,8 +66,8 @@
     "groupName": "jpa-404",
     "templateName": "jpa-404",
     "globalConfigName": "jpa-404",
-    "columnConfigName": "Default.json",
-    "typeMapperName": "Default.json",
+    "columnConfigName": "JPA-404.json",
+    "typeMapperName": "JPA-404.json",
     "tableNameRegex": ".*",
     "schemaNameRegex": ".*"
   }

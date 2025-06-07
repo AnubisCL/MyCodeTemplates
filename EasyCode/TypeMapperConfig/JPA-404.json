@@ -10,6 +10,11 @@
     "javaType": "java.lang.String"
   },
   {
+    "matchType": "ORDINARY",
+    "columnType": "tinyint(1)",
+    "javaType": "java.lang.Boolean"
+  },
+  {
     "matchType": "REGEX",
     "columnType": "(tiny|medium|long)*text",
     "javaType": "java.lang.String"
@@ -17,7 +22,12 @@
   {
     "matchType": "REGEX",
     "columnType": "decimal(\\(\\d+,\\d+\\))?",
-    "javaType": "java.lang.Double"
+    "javaType": "java.math.BigDecimal"
+  },
+  {
+    "matchType": "REGEX",
+    "columnType": "decimal(\\(\\d+\\))?",
+    "javaType": "java.lang.Long"
   },
   {
     "matchType": "ORDINARY",
@@ -42,22 +52,22 @@
   {
     "matchType": "REGEX",
     "columnType": "bigint(\\(\\d+\\))?",
-    "javaType": "java.lang.Long"
+    "javaType": "long"
   },
   {
     "matchType": "ORDINARY",
     "columnType": "date",
-    "javaType": "java.time.LocalDate"
+    "javaType": "java.util.Date"
   },
   {
     "matchType": "ORDINARY",
     "columnType": "datetime",
-    "javaType": "java.time.LocalDate"
+    "javaType": "java.util.Date"
   },
   {
     "matchType": "ORDINARY",
     "columnType": "timestamp",
-    "javaType": "java.time.LocalDate"
+    "javaType": "java.util.Date"
   },
   {
     "matchType": "ORDINARY",
