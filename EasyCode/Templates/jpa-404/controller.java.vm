@@ -15,15 +15,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import ${serviceImplPackageName}.${serviceClassName};
-import java.util.List;
-import java.util.Optional;
 
 #tableComment("controller class")
 #set($entityNameLower=$tool.firstLowerCase($tableInfo.name))
 #set($dtoVariableName=$tool.firstLowerCase($dtoClassName))
-
-
-
 #if(${useSlf4j})
 @Slf4j
 #end

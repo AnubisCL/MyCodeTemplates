@@ -43,10 +43,10 @@ $!{autoImport.vm}
 @Data
 #end
 #if($useSwagger)
-@ApiModel(value = "$!{entityName}" , description = "$!{tableInfo.comment}" )
+@ApiModel(value = "$!{entityName}" , description = "$!{tableInfo.comment}")
 #end
 #if($useOpenApi)
-@Schema(name = "$!{entityName}" , description = "$!{tableInfo.comment}" )
+@Schema(name = "$!{entityName}" , description = "$!{tableInfo.comment}")
 #end
 @Entity
 @Table(name= $!{entityName}.TABLE)
