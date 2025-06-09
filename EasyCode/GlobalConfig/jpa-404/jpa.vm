@@ -23,9 +23,9 @@
 #set($useMapStruct=false)
 #set($useSlf4j=true)
 
-#if($tableInfo.obj.name.startsWith("uc_"))
+#if($tableInfo.obj.name.startsWith("sys_"))
     #set($tableInfo.preName=${tableInfo.obj.name.split("_")[0]})
-    #set($tableInfo.name=${tableInfo.name.substring(2)})
+    #set($tableInfo.name=${tableInfo.name.substring(3)})
 #end
 
 #set($entityName=${tableInfo.name})

@@ -58,8 +58,11 @@ public class $!{entityName} extends BaseEntity {
     public static final String API_URL = Constants.API_PRE + "$!{entityVariableName}";
     public static final String TABLE = Constants.TABLE_PRE + "$!{tableInfo.obj.name}";
 
+## 过滤BaseEntity中定义的属性
+#set($notShow = $!tool.newArrayList("id","creator_id","deleted","created_time","updated_time"))
 #foreach($column in $tableInfo.pkColumn)
     #if($superClassFields.contains($column.name))
+    #elseif($notShow.contains($column.obj.name))
     #else
         @Id
         @Column(name = "$!{column.obj.name}")
@@ -74,7 +77,6 @@ public class $!{entityName} extends BaseEntity {
     #end
 
     #foreach($column in $tableInfo.otherColumn)
-        #set($notShow = $!tool.newArrayList("creator_id","deleted","created_time","updated_time"))
         #if($superClassFields.contains($column.name))
         #elseif($notShow.contains($column.obj.name))
         #else
