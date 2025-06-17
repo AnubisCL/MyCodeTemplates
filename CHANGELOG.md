@@ -2,6 +2,23 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.0.2] - 2025-06-17
+
+### 🚀 Features
+
+- Jpa-404 代码生成器模版 自定义数据类型映射
+
+### 🐛 Bug Fixes
+
+- Jpa-404 代码生成器模版 jpa.vm 常量路径 constants.java.vm 包
+- Jpa-404 代码生成器模版 导包
+- Jpa-404 代码生成器模版 删除没有用的包
+- Jpa-404 代码生成器模版 过滤BaseEntity中定义的属性
+
+### 📚 Documentation
+
+- README.md
+
 ## [0.0.1] - 2025-06-07
 
 ### 🚀 Features
