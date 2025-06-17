@@ -56,7 +56,7 @@ public class $!{entityName} extends BaseEntity {
 
     #set($entityVariableName=$tool.firstLowerCase($entityName))
     public static final String API_URL = Constants.API_PRE + "$!{entityVariableName}";
-    public static final String TABLE = Constants.TABLE_PRE + "$!{tableInfo.obj.name}";
+    public static final String TABLE = Constants.TABLE_PRE + "$!{noPerTableName}";
 
 ## 过滤BaseEntity中定义的属性
 #set($notShow = $!tool.newArrayList("id","creator_id","deleted","created_time","updated_time"))
@@ -64,28 +64,28 @@ public class $!{entityName} extends BaseEntity {
     #if($superClassFields.contains($column.name))
     #elseif($notShow.contains($column.obj.name))
     #else
-        @Id
-        @Column(name = "$!{column.obj.name}")
+    @Id
+    @Column(name = "$!{column.obj.name}")
         #if($useSwagger)
-        @ApiModelProperty(value = "${column.comment}")
+    @ApiModelProperty(value = "${column.comment}")
         #end
         #if($useOpenApi)
-        @Schema(description = "${column.comment}")
+    @Schema(description = "${column.comment}")
         #end
-        @FieldSchema(title = "${column.comment}")
-        private $!{tool.getClsNameByFullName($column.type)} $!{column.name};
+    @FieldSchema(title = "${column.comment}")
+    private $!{tool.getClsNameByFullName($column.type)} $!{column.name};
     #end
 
     #foreach($column in $tableInfo.otherColumn)
         #if($superClassFields.contains($column.name))
         #elseif($notShow.contains($column.obj.name))
         #else
-        @Column(name = "$!{column.obj.name}")
+    @Column(name = "$!{column.obj.name}")
         #if($useOpenApi)
-        @Schema(description = "${column.comment}")
+    @Schema(description = "${column.comment}")
         #end
-        @FieldSchema(title = "${column.comment}")
-        private $!{tool.getClsNameByFullName($column.type)} $!{column.name};
+    @FieldSchema(title = "${column.comment}")
+    private $!{tool.getClsNameByFullName($column.type)} $!{column.name};
 
         #end
     #end

@@ -1,7 +1,9 @@
 #set($author="chailei")
+###set($projectPath="/Users/anubis/404net/projects/anycms-application-material-demo")
+###set($projectPath="/Users/anubis/404net/anycms/anycms-platform/anycms-application/anycms-application-system")
 #set($projectPath="/Users/anubis/404net/anycms/anycms-platform/anycms-application/anycms-application-system")
 #set($javamodelSrcFolder="${projectPath}/src/main/java")
-#set($modelPackageName="org.anycms.sys.entity")
+#set($modelPackageName="org.anycms.sys.domain.entity")
 #set($repositorySrcFolder="${projectPath}/src/main/java")
 #set($repositoryPackageName="org.anycms.sys.repository")
 #set($serviceImplSrcFolder="${projectPath}/src/main/java")
@@ -23,9 +25,15 @@
 #set($useMapStruct=false)
 #set($useSlf4j=true)
 
-#if($tableInfo.obj.name.startsWith("sys_"))
-    #set($tableInfo.preName=${tableInfo.obj.name.split("_")[0]})
-    #set($tableInfo.name=${tableInfo.name.substring(3)})
+## 表前缀处理
+#set($perList = $!tool.newArrayList("sys_","app_","uc_","cms_","fs_","ai_","aff_","m_","video_", "pay_", "volcengine_"))
+#foreach($per in $perList)
+    #if($tableInfo.obj.name.startsWith("$per"))
+        #set($perLength = $per.length() - 1)
+        #set($tableInfo.preName=${tableInfo.obj.name.split("_")[0]})
+        #set($tableInfo.name=${tableInfo.name.substring($perLength)})
+        #set($noPerTableName=${tableInfo.obj.name.replace("$per", "")})
+    #end
 #end
 
 #set($entityName=${tableInfo.name})
