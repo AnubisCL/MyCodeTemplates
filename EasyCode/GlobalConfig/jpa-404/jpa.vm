@@ -1,7 +1,7 @@
 #set($author="chailei")
 ###set($projectPath="/Users/anubis/404net/projects/anycms-application-material-demo")
-###set($projectPath="/Users/anubis/404net/anycms/anycms-platform/anycms-application/anycms-application-system")
 #set($projectPath="/Users/anubis/404net/anycms/anycms-platform/anycms-application/anycms-application-system")
+###set($projectPath="/Users/anubis/404net/anycms/anycms-platform/anycms-application/anycms-application-file")
 #set($javamodelSrcFolder="${projectPath}/src/main/java")
 #set($modelPackageName="org.anycms.sys.domain.entity")
 #set($repositorySrcFolder="${projectPath}/src/main/java")
