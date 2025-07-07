@@ -9,6 +9,9 @@ $!callback.setFileName($tool.append($controllerClassName, ".java"))
 package ${controllerPackageName};
 $!{autoImport.vm}
 import org.anycms.base.web.CrudController;
+import cn.dev33.satoken.stp.StpUtil;
+import org.anycms.framework.common.util.DateUtils;
+import org.anycms.base.BizException;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.slf4j.Slf4j;
 import ${modelPackageName}.${entityName};
@@ -49,6 +52,21 @@ public class ${controllerClassName} extends CrudController<${repositoryClassName
     public ${repositoryClassName} getRepository() {
         return repository;
     }
+
+    @Override
+    public void beforeAdd(${entityName} bean) throws BizException {
+        bean.setCreatorId(StpUtil.getLoginIdAsString());
+        bean.setUpdatedTime(DateUtils.currentDate().getTime());
+        super.beforeAdd(bean);
+    }
+
+    @Override
+    public void beforeUpdate(${entityName} previous, ${entityName} current) throws BizException {
+        current.setUpdatedTime(DateUtils.currentDate().getTime());
+        super.beforeUpdate(previous, current);
+    }
+
+
 
 
 }
