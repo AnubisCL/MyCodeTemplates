@@ -56,14 +56,11 @@ public class ${controllerClassName} extends CrudController<${repositoryClassName
     @Override
     public void beforeAdd(${entityName} bean) throws BizException {
         bean.setCreatorId(StpUtil.getLoginIdAsString());
-        bean.setCreatedTime(DateUtils.currentDate().getTime());
-        bean.setUpdatedTime(DateUtils.currentDate().getTime());
         super.beforeAdd(bean);
     }
 
     @Override
     public void beforeUpdate(${entityName} previous, ${entityName} current) throws BizException {
-        current.setUpdatedTime(DateUtils.currentDate().getTime());
         super.beforeUpdate(previous, current);
     }
 
