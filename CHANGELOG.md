@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.0.3] - 2025-08-02
+
+### 🚀 Features
+
+- Jpa-404 代码生成器模版 添加&更新前置操作
+- *(jpa-404)* 为实体类添加创建时间字段
+
+### 🐛 Bug Fixes
+
+- Jpa-404 代码生成器模版 entity API URL生成规则
+
+### 🚜 Refactor
+
+- *(jpa-404)* 移除时间字段自动设置
+
 ## [0.0.2] - 2025-06-17
 
 ### 🚀 Features
