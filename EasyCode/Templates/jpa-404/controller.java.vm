@@ -61,6 +61,7 @@ public class ${controllerClassName} extends CrudController<${repositoryClassName
 
     @Override
     public void beforeUpdate(${entityName} previous, ${entityName} current) throws BizException {
+        current.setCreatorId(previous.getCreatorId());
         super.beforeUpdate(previous, current);
     }
 
