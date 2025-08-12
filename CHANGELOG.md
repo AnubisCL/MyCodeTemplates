@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.0.4] - 2025-08-12
+
+### 🚀 Features
+
+- *(${entityName}控制器)* 在更新前设置当前记录的创建者ID
+
+### 🚜 Refactor
+
+- *(jpa)* 更新 JPA 模板配置
+
 ## [0.0.3] - 2025-08-02
 
 ### 🚀 Features
