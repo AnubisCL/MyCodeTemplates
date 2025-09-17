@@ -16,7 +16,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.slf4j.Slf4j;
 import ${modelPackageName}.${entityName};
 import ${repositoryPackageName}.${repositoryClassName};
-import org.springframework.beans.factory.annotation.Autowired;
+import jakarta.annotation.Resource;
 import org.springframework.web.bind.annotation.*;
 
 import ${serviceImplPackageName}.${serviceClassName};
@@ -37,11 +37,11 @@ import ${serviceImplPackageName}.${serviceClassName};
 @RequestMapping($!{entityName}.API_URL)
 public class ${controllerClassName} extends CrudController<${repositoryClassName}, ${entityName}> {
 
-    @Autowired
+    @Resource
     #set($serviceVariableName=$tool.firstLowerCase($serviceClassName))
     private ${serviceClassName} ${serviceVariableName};
 
-    @Autowired
+    @Resource
     private ${repositoryClassName} repository;
 
     public ${controllerClassName}() {
